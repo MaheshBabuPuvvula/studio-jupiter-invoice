@@ -10,7 +10,7 @@ interface InvoiceListProps {
 
 export default function InvoiceList({ invoices, isLoading }: InvoiceListProps) {
   const downloadPDF = async (invoice: any) => {
-    // Create single-page invoice with orange-black gradient
+    // Create single-page invoice with pure black text
     const element = document.createElement('div');
     element.style.width = '210mm';
     element.style.minHeight = '297mm';
@@ -24,24 +24,24 @@ export default function InvoiceList({ invoices, isLoading }: InvoiceListProps) {
         <div style="background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 50%, #FFA500 100%); padding: 20px 25px; color: white;">
           <div style="display: flex; align-items: center; justify-content: space-between;">
             <div style="display: flex; align-items: center; gap: 20px;">
-              <img src="/logo.jpg" alt="Studio Jupiter" style="height: 70px; width: auto; background: white; border-radius: 10px; padding: 5px;" onerror="this.style.display='none'">
+              <img src="/logo.png" alt="Studio Jupiter" style="height: 70px; width: auto; background: white; border-radius: 10px; padding: 5px;" onerror="this.style.display='none'">
               <div>
-                <h1 style="margin: 0; font-size: 28px; letter-spacing: 2px;">STUDIO JUPITER</h1>
-                <p style="margin: 5px 0 0 0; font-size: 12px; opacity: 0.9;">HandCraft Decors</p>
+                <h1 style="margin: 0; font-size: 28px; letter-spacing: 2px; color: white;">STUDIO JUPITER</h1>
+                <p style="margin: 5px 0 0 0; font-size: 12px; opacity: 0.9; color: white;">HandCraft Decors</p>
               </div>
             </div>
             <div style="text-align: right;">
-              <p style="margin: 0; font-size: 11px;">GSTIN: 27AAAAA1234A1Z</p>
-              <p style="margin: 5px 0 0 0; font-size: 11px;">CIN: U12345MH2020PTC123456</p>
+              <p style="margin: 0; font-size: 11px; color: white;">GSTIN: 27AAAAA1234A1Z</p>
+              <p style="margin: 5px 0 0 0; font-size: 11px; color: white;">CIN: U12345MH2020PTC123456</p>
             </div>
           </div>
         </div>
 
-        <!-- Company Info Bar -->
-        <div style="background: #1a1a1a; color: white; padding: 8px 25px; display: flex; justify-content: space-between; font-size: 9px;">
-          <span>📍 123 Craft Lane, Art District, Mumbai - 400001</span>
-          <span>📞 +91 98765 43210</span>
-          <span>✉️ studio@jupiter.com</span>
+        <!-- Company Info Bar - Pure Black -->
+        <div style="background: #000000; color: white; padding: 8px 25px; display: flex; justify-content: space-between; font-size: 9px;">
+          <span style="color: white;">📍 123 Craft Lane, Art District, Mumbai - 400001</span>
+          <span style="color: white;">📞 +91 98765 43210</span>
+          <span style="color: white;">✉️ studio@jupiter.com</span>
         </div>
 
         <!-- Invoice Title -->
@@ -55,16 +55,16 @@ export default function InvoiceList({ invoices, isLoading }: InvoiceListProps) {
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 25px; margin-bottom: 20px;">
           <div>
             <div style="background: #FFF3E0; padding: 12px; border-left: 4px solid #FF6B00;">
-              <p style="margin: 4px 0;"><strong style="color: #FF6B00;">Invoice No:</strong> ${invoice.invoiceNumber}</p>
-              <p style="margin: 4px 0;"><strong style="color: #FF6B00;">Date:</strong> ${invoice.date}</p>
-              <p style="margin: 4px 0;"><strong style="color: #FF6B00;">Place of Supply:</strong> ${invoice.client.state}</p>
+              <p style="margin: 4px 0; color: #000000;"><strong style="color: #FF6B00;">Invoice No:</strong> ${invoice.invoiceNumber}</p>
+              <p style="margin: 4px 0; color: #000000;"><strong style="color: #FF6B00;">Date:</strong> ${invoice.date}</p>
+              <p style="margin: 4px 0; color: #000000;"><strong style="color: #FF6B00;">Place of Supply:</strong> ${invoice.client.state}</p>
             </div>
           </div>
           <div>
             <div style="background: #FFF3E0; padding: 12px; border-left: 4px solid #FF6B00;">
-              <p style="margin: 4px 0;"><strong style="color: #FF6B00;">Order No:</strong> ${invoice.invoiceNumber.slice(-6)}</p>
-              <p style="margin: 4px 0;"><strong style="color: #FF6B00;">Payment Terms:</strong> Advance</p>
-              <p style="margin: 4px 0;"><strong style="color: #FF6B00;">Due Date:</strong> ${invoice.date}</p>
+              <p style="margin: 4px 0; color: #000000;"><strong style="color: #FF6B00;">Order No:</strong> ${invoice.invoiceNumber.slice(-6)}</p>
+              <p style="margin: 4px 0; color: #000000;"><strong style="color: #FF6B00;">Payment Terms:</strong> Advance</p>
+              <p style="margin: 4px 0; color: #000000;"><strong style="color: #FF6B00;">Due Date:</strong> ${invoice.date}</p>
             </div>
           </div>
         </div>
@@ -73,10 +73,10 @@ export default function InvoiceList({ invoices, isLoading }: InvoiceListProps) {
         <div style="padding: 0 25px; margin-bottom: 20px;">
           <div style="background: #FAFAFA; padding: 15px; border-radius: 8px; border: 1px solid #FFE0B3;">
             <h3 style="color: #FF6B00; margin: 0 0 10px 0; font-size: 14px;">📦 BILL TO:</h3>
-            <p style="margin: 5px 0; font-size: 12px;"><strong>${invoice.client.name}</strong></p>
-            <p style="margin: 5px 0; font-size: 11px; color: #555;">${invoice.client.address}</p>
-            ${invoice.client.gstin ? `<p style="margin: 5px 0; font-size: 11px;"><strong>GSTIN:</strong> ${invoice.client.gstin}</p>` : ''}
-            <p style="margin: 5px 0; font-size: 11px;"><strong>State:</strong> ${invoice.client.state}</p>
+            <p style="margin: 5px 0; font-size: 12px; color: #000000;"><strong style="color: #000000;">${invoice.client.name}</strong></p>
+            <p style="margin: 5px 0; font-size: 11px; color: #000000;">${invoice.client.address}</p>
+            ${invoice.client.gstin ? `<p style="margin: 5px 0; font-size: 11px; color: #000000;"><strong style="color: #000000;">GSTIN:</strong> ${invoice.client.gstin}</p>` : ''}
+            <p style="margin: 5px 0; font-size: 11px; color: #000000;"><strong style="color: #000000;">State:</strong> ${invoice.client.state}</p>
           </div>
         </div>
 
@@ -85,21 +85,21 @@ export default function InvoiceList({ invoices, isLoading }: InvoiceListProps) {
           <table style="width: 100%; border-collapse: collapse;">
             <thead>
               <tr style="background: linear-gradient(135deg, #FF6B00, #FF8C00); color: white;">
-                <th style="padding: 10px; text-align: center; border: none; font-size: 11px;">SL</th>
-                <th style="padding: 10px; text-align: left; border: none; font-size: 11px;">DESCRIPTION</th>
-                <th style="padding: 10px; text-align: center; border: none; font-size: 11px;">QTY</th>
-                <th style="padding: 10px; text-align: right; border: none; font-size: 11px;">RATE (₹)</th>
-                <th style="padding: 10px; text-align: right; border: none; font-size: 11px;">AMOUNT (₹)</th>
+                <th style="padding: 10px; text-align: center; border: none; font-size: 11px; color: white;">SL</th>
+                <th style="padding: 10px; text-align: left; border: none; font-size: 11px; color: white;">DESCRIPTION</th>
+                <th style="padding: 10px; text-align: center; border: none; font-size: 11px; color: white;">QTY</th>
+                <th style="padding: 10px; text-align: right; border: none; font-size: 11px; color: white;">RATE (₹)</th>
+                <th style="padding: 10px; text-align: right; border: none; font-size: 11px; color: white;">AMOUNT (₹)</th>
               </tr>
             </thead>
             <tbody>
               <tr style="border-bottom: 1px solid #FFE0B3;">
-                <td style="padding: 10px; text-align: center; font-size: 11px;">1</td>
-                <td style="padding: 10px; text-align: left; font-size: 11px;">Handcrafted Decorative Products</td>
-                <td style="padding: 10px; text-align: center; font-size: 11px;">1</td>
-                <td style="padding: 10px; text-align: right; font-size: 11px;">${invoice.baseAmount.toFixed(2)}</td>
-                <td style="padding: 10px; text-align: right; font-size: 11px;">${invoice.baseAmount.toFixed(2)}</td>
-               </tr>
+                <td style="padding: 10px; text-align: center; font-size: 11px; color: #000000;">1</td>
+                <td style="padding: 10px; text-align: left; font-size: 11px; color: #000000;">Handcrafted Decorative Products</td>
+                <td style="padding: 10px; text-align: center; font-size: 11px; color: #000000;">1</td>
+                <td style="padding: 10px; text-align: right; font-size: 11px; color: #000000;">${invoice.baseAmount.toFixed(2)}</td>
+                <td style="padding: 10px; text-align: right; font-size: 11px; color: #000000;">${invoice.baseAmount.toFixed(2)}</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -109,21 +109,21 @@ export default function InvoiceList({ invoices, isLoading }: InvoiceListProps) {
           <div style="width: 280px;">
             <table style="width: 100%; border-collapse: collapse;">
               <tr style="border-bottom: 1px solid #FFE0B3;">
-                <td style="padding: 8px; font-size: 11px;">Subtotal</td>
-                <td style="padding: 8px; text-align: right; font-size: 11px;">₹${invoice.baseAmount.toFixed(2)}</td>
-              </tr>
+                <td style="padding: 8px; font-size: 11px; color: #000000;">Subtotal</td>
+                <td style="padding: 8px; text-align: right; font-size: 11px; color: #000000;">₹${invoice.baseAmount.toFixed(2)}</td>
+               </tr>
               <tr style="border-bottom: 1px solid #FFE0B3;">
-                <td style="padding: 8px; font-size: 11px;">CGST (9%)</td>
-                <td style="padding: 8px; text-align: right; font-size: 11px;">₹${invoice.cgst.toFixed(2)}</td>
-              </tr>
+                <td style="padding: 8px; font-size: 11px; color: #000000;">CGST (9%)</td>
+                <td style="padding: 8px; text-align: right; font-size: 11px; color: #000000;">₹${invoice.cgst.toFixed(2)}</td>
+               </tr>
               <tr style="border-bottom: 1px solid #FFE0B3;">
-                <td style="padding: 8px; font-size: 11px;">SGST (9%)</td>
-                <td style="padding: 8px; text-align: right; font-size: 11px;">₹${invoice.sgst.toFixed(2)}</td>
-              </tr>
+                <td style="padding: 8px; font-size: 11px; color: #000000;">SGST (9%)</td>
+                <td style="padding: 8px; text-align: right; font-size: 11px; color: #000000;">₹${invoice.sgst.toFixed(2)}</td>
+               </tr>
               <tr style="background: #FFF3E0;">
                 <td style="padding: 12px; font-size: 14px; font-weight: bold; color: #FF6B00;">TOTAL</td>
                 <td style="padding: 12px; text-align: right; font-size: 16px; font-weight: bold; color: #FF6B00;">₹${invoice.total.toFixed(2)}</td>
-              </tr>
+               </tr>
             </table>
           </div>
         </div>
@@ -131,16 +131,16 @@ export default function InvoiceList({ invoices, isLoading }: InvoiceListProps) {
         <!-- Amount in Words -->
         <div style="padding: 0 25px; margin-bottom: 20px;">
           <div style="background: #FFF3E0; padding: 10px 15px; border-radius: 6px;">
-            <p style="margin: 0; font-size: 11px;"><strong style="color: #FF6B00;">Amount in Words:</strong> ${numberToWords(invoice.total)} Rupees Only</p>
+            <p style="margin: 0; font-size: 11px; color: #000000;"><strong style="color: #FF6B00;">Amount in Words:</strong> ${numberToWords(invoice.total)} Rupees Only</p>
           </div>
         </div>
 
         <!-- Bank Details -->
         <div style="padding: 0 25px; margin-bottom: 15px;">
-          <div style="background: #1a1a1a; color: white; padding: 12px; border-radius: 6px;">
-            <p style="margin: 0 0 5px 0; font-size: 11px;"><strong>🏦 BANK DETAILS:</strong></p>
-            <p style="margin: 3px 0; font-size: 9px;">Account: STUDIO JUPITER HANDCRAFT DECORS | Bank: HDFC Bank, Mumbai</p>
-            <p style="margin: 3px 0; font-size: 9px;">A/c No: 12345678901234 | IFSC: HDFC0001234 | UPI: studio@hdfcbank</p>
+          <div style="background: #000000; color: white; padding: 12px; border-radius: 6px;">
+            <p style="margin: 0 0 5px 0; font-size: 11px; color: white;"><strong>🏦 BANK DETAILS:</strong></p>
+            <p style="margin: 3px 0; font-size: 9px; color: white;">Account: STUDIO JUPITER HANDCRAFT DECORS | Bank: HDFC Bank, Mumbai</p>
+            <p style="margin: 3px 0; font-size: 9px; color: white;">A/c No: 12345678901234 | IFSC: HDFC0001234 | UPI: studio@hdfcbank</p>
           </div>
         </div>
 
@@ -148,19 +148,19 @@ export default function InvoiceList({ invoices, isLoading }: InvoiceListProps) {
         <div style="padding: 0 25px; margin-top: 15px;">
           <div style="display: flex; justify-content: space-between; border-top: 2px solid #FF6B00; padding-top: 15px;">
             <div>
-              <p style="margin: 0; font-size: 10px; color: #666;">Authorized Signatory</p>
+              <p style="margin: 0; font-size: 10px; color: #000000;">Authorized Signatory</p>
               <div style="margin-top: 20px;">
-                <p style="margin: 0; font-size: 9px; color: #999;">(For Studio Jupiter HandCraft Decors)</p>
+                <p style="margin: 0; font-size: 9px; color: #000000;">(For Studio Jupiter HandCraft Decors)</p>
               </div>
             </div>
             <div style="text-align: center;">
               <p style="margin: 0; font-size: 9px; color: #FF6B00;">✨ Thank you for choosing Studio Jupiter! ✨</p>
-              <p style="margin: 5px 0 0 0; font-size: 8px; color: #999;">This is a computer generated invoice - no signature required</p>
+              <p style="margin: 5px 0 0 0; font-size: 8px; color: #000000;">This is a computer generated invoice - no signature required</p>
             </div>
             <div style="text-align: right;">
-              <p style="margin: 0; font-size: 10px; color: #666;">Customer Signature</p>
+              <p style="margin: 0; font-size: 10px; color: #000000;">Customer Signature</p>
               <div style="margin-top: 20px;">
-                <p style="margin: 0; font-size: 9px; color: #999;">(Received in good condition)</p>
+                <p style="margin: 0; font-size: 9px; color: #000000;">(Received in good condition)</p>
               </div>
             </div>
           </div>
